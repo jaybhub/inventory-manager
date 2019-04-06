@@ -18,14 +18,16 @@
       </ion-col>
     </ion-row>
 
-    <ion-col class="q1">
-      <div class="q-header"></div>
-      <ion-list dragula="bag" [(dragulaModel)]="q1" lines="none">
-        <ion-item *ngFor="let item of q1" [color]="item.color" expand="block" text-wrap>
-          {{ item.value }}
-        </ion-item>
-      </ion-list>
-    </ion-col>
+    <ion-row align-items-center>
+      <ion-col class="q1">
+        <div class="q-header"></div>
+        <ion-list dragula="bag" [(dragulaModel)]="q1" lines="none">
+          <ion-item *ngFor="let item of q1" [color]="item.color" expand="block" text-wrap>
+            {{ item.value }}
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
 
   </ion-grid>
 

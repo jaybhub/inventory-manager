@@ -13,18 +13,6 @@ export class Tab2Page {
     { value: 'Buy Milk', color: 'primary' },
     { value: 'Write new Post', color: 'primary' }
   ];
-  q2 = [
-    { value: 'Schedule newsletter', color: 'secondary' },
-    { value: 'Find new Ionic Academy topics', color: 'secondary' }
-  ];
-  q3 = [
-    { value: 'Improve page performance', color: 'tertiary' },
-    { value: 'Clean the house', color: 'tertiary' }
-  ];
-  q4 = [
-    { value: 'Unimportant things', color: 'warning' },
-    { value: 'Watch Netflix', color: 'warning' }
-  ];
  
   todo = { value: '', color: '' };
   selectedQuadrant = 'q1';
