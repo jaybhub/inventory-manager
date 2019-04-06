@@ -10,8 +10,8 @@ import { ToastController } from '@ionic/angular';
 })
 export class Tab2Page {
   q1 = [
-    { value: 'Buy Milk', color: 'primary' },
-    { value: 'Write new Post', color: 'primary' }
+    { value: 'Bobcat', color: 'primary' },
+    { value: 'Pruning Shears', color: 'primary' }
   ];
  
   todo = { value: '', color: '' };
