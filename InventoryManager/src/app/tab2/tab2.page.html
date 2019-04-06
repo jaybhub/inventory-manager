@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title class="ion-text-center">
+    <ion-title class="title">
       Shared Inventory
     </ion-title>
   </ion-toolbar>
@@ -9,19 +9,24 @@
 <ion-content forceOverscroll="false">
   <ion-grid>
 
+    <!-- Item Totals Row & Columns -->
     <ion-row align-items-center>
+      <!-- Inventory Items Total -->
       <ion-col class="total-column" size="6">
         Total Items:
       </ion-col>
+      <!-- Items In User Inventories Total -->
       <ion-col class="total-column" size="6">
         Items Out:
       </ion-col>
     </ion-row>
 
+    <!-- Item List Row & Column -->
     <ion-row align-items-center>
-      <ion-col class="q1">
-        <div class="q-header">Items</div>
-        <ion-list dragula="bag" [(dragulaModel)]="q1" lines="none">
+      <!-- Item List Column -->
+      <ion-col class="inventory-column">
+        <div class="col-header">Shared Items</div>
+        <ion-list dragula="bag" [(dragulaModel)]="q1">
           <ion-item *ngFor="let item of q1" [color]="item.color" expand="block" text-wrap>
             {{ item.value }}
           </ion-item>
@@ -31,10 +36,11 @@
 
   </ion-grid>
 
-  <ion-row style="position: fixed; bottom: 0; left: 0; right: 0" class="delete-area" justify-content-center>
+  <!-- Move to Shared Inventory Area, Fixed at Bottom -->
+  <ion-row class="move-item" justify-content-center>
     <ion-col text-center>
-      <h4 style="margin-bottom: 0px; margin-top: 5px">Add to Personal Inventory</h4>
-      <ion-icon name="return-left" size="xlarge" color="medium"></ion-icon>
+      <h4 >Add to Personal Inventory</h4>
+      <ion-icon name="return-left"></ion-icon>
     </ion-col>
   </ion-row>
 

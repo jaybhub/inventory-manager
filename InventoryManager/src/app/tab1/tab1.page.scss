@@ -1,36 +1,41 @@
-.q1, .q2, .q3, .q4 {
+.title {
+  text-align: center;
+}
+
+.total-column {
+
+}
+
+.active-column {
   border: 4px solid #fff;
 }
 
-.matrix {
-  margin-top: 30px;
-
-  ion-col {
-      --ion-grid-column-padding: 0px;
-      min-height: 150px;
-  }
-
-  .list {
-      padding: 0px;
-      height: 100%;
-  }
-
-  ion-item {
-      margin-bottom: 2px;
-  }
+.inventory-column {
+  border: 4px solid #fff;
 }
 
-.q-header {
+.col-header {
   background-color: var(--ion-color-light);
   height: 20px;
   text-align: center;
 }
 
-.delete-area {
+.move-item {
   border: 2px dashed var(--ion-color-medium);
   margin: 10px;
   height: 100px;
+  position: fixed; 
+  bottom: 0; 
+  left: 0; 
+  right: 0;
+  
+  h4 {
+    margin-bottom: 0px; 
+    margin-top: 5px;
+  }
+
   ion-icon {
      font-size: 64px;
+    //  color: "medium";
   }
 }

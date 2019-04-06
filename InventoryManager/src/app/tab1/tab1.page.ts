@@ -9,6 +9,7 @@ import { ToastController } from '@ionic/angular';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page {
+  // TODO: Change to dynamically filled list
   q1 = [
     { value: 'Shovel', color: 'primary' },
     { value: 'Rake', color: 'primary' }
@@ -18,10 +19,14 @@ export class Tab1Page {
     { value: 'Trencher', color: 'secondary' }
   ];
  
-  todo = { value: '', color: '' };
-  selectedQuadrant = 'q1';
- 
+  // TODO: moveItemToSharedInventory function
+
+  // TODO: stop change color on move between columns
+
+  // TODO: stop item delete except in moveToSharedInventory
+
   constructor(private dragulaService: DragulaService, private toastController: ToastController) {
+    
     this.dragulaService.drag('bag1')
     .subscribe(({ name, el, source }) => {
       el.setAttribute('color', 'danger');
@@ -43,26 +48,6 @@ export class Tab1Page {
     this.dragulaService.createGroup('bag1', {
       removeOnSpill: true
     });
-  }
-
-
-  addTodo() {
-    switch (this.selectedQuadrant) {
-      case 'q1':
-        this.todo.color = 'primary';
-        break;
-      case 'q2':
-        this.todo.color = 'secondary';
-        break;
-      case 'q3':
-        this.todo.color = 'tertiary';
-        break;
-      case 'q4':
-        this.todo.color = 'warning';
-        break;
-    }
-    this[this.selectedQuadrant].push(this.todo);
-    this.todo = { value: '', color: '' };
   }
 
 }
