@@ -17,28 +17,24 @@ export class Tab2Page {
  
   // TODO: moveItemToPersonalInventory function
 
-  // TODO: stop change color on move between columns
-
-  // TODO: stop item delete except in moveToSharedInventory
-
   constructor(private dragulaService: DragulaService, private toastController: ToastController) {
     
     this.dragulaService.drag('bag')
     .subscribe(({ name, el, source }) => {
-      el.setAttribute('color', 'danger');
+      el.setAttribute('color', 'primary');
     });
  
     this.dragulaService.removeModel('bag')
     .subscribe(({ item }) => {
       this.toastController.create({
-        message: 'Removed: ' + item.value,
+        message: 'Moved: ' + item.value + 'to Personal Inventory',
         duration: 2000
       }).then(toast => toast.present());
     });
  
     this.dragulaService.dropModel('bag')
       .subscribe(({ item }) => {
-        item['color'] = 'success';
+        item['color'] = 'primary';
       });
  
     this.dragulaService.createGroup('bag', {

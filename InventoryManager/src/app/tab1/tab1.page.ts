@@ -15,34 +15,30 @@ export class Tab1Page {
     { value: 'Rake', color: 'primary' }
   ];
   q2 = [
-    { value: 'Wheel Barrow', color: 'secondary' },
-    { value: 'Trencher', color: 'secondary' }
+    { value: 'Wheel Barrow', color: 'primary' },
+    { value: 'Trencher', color: 'primary' }
   ];
  
   // TODO: moveItemToSharedInventory function
-
-  // TODO: stop change color on move between columns
-
-  // TODO: stop item delete except in moveToSharedInventory
 
   constructor(private dragulaService: DragulaService, private toastController: ToastController) {
     
     this.dragulaService.drag('bag1')
     .subscribe(({ name, el, source }) => {
-      el.setAttribute('color', 'danger');
+      el.setAttribute('color', 'primary');
     });
  
     this.dragulaService.removeModel('bag1')
     .subscribe(({ item }) => {
       this.toastController.create({
-        message: 'Removed: ' + item.value,
+        message: 'Moved: ' + item.value + ' to Shared Inventory',
         duration: 2000
       }).then(toast => toast.present());
-    });
+    }); 
  
     this.dragulaService.dropModel('bag1')
       .subscribe(({ item }) => {
-        item['color'] = 'success';
+        item['color'] = 'primary';
       });
  
     this.dragulaService.createGroup('bag1', {

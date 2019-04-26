@@ -7,23 +7,26 @@
 </ion-header>
 
 <ion-content>
+
   <!-- Add new item button -->
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button>
+    <ion-fab-button (click)="addItem()">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
 
   <!-- Inventory Item List -->
   <ion-list>
+
     <!-- Sliding item with text options on both sides -->
-    <ion-item-sliding>
+    <ion-item-sliding *ngFor="let item of items; let i = index">
+
       <ion-item-options side="start">
-        <ion-item-option (click)="addItemToPersonalInventory(item)">
+        <ion-item-option (click)="moveItemToPersonalInventory(item)">
           <ion-icon slot="top" name="add-circle-outline"></ion-icon>
           Personal
         </ion-item-option>
-        <ion-item-option color="tertiary" (click)="addItemToSharedInventory(item)">
+        <ion-item-option color="tertiary" (click)="moveItemToSharedInventory(item)">
           <ion-icon slot="top" name="add-circle-outline"></ion-icon>
           Shared
         </ion-item-option>
@@ -32,13 +35,13 @@
       <ion-item>
         <!-- TODO: Make dynamically filled list -->
         <ion-label>
-          <h2>Item Name</h2>
-          <p>A brief item description</p>
+          <h2>{{item.name}}</h2>
+          <p>{{item.description}}</p>
         </ion-label>
       </ion-item>
   
       <ion-item-options side="end">
-        <ion-item-option color="danger" (click)="deleteItem(item)">
+        <ion-item-option color="danger" (click)="removeItem(item, i)">
           <ion-icon slot="icon-only" name="trash"></ion-icon>
         </ion-item-option>
       </ion-item-options>
