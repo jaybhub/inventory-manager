@@ -1,6 +1,8 @@
 {
   "name": "InventoryManager",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular",
   "id": "65ae41f7"
 }

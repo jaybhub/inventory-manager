@@ -19,7 +19,7 @@
   <ion-list>
 
     <!-- Sliding item with text options on both sides -->
-    <ion-item-sliding *ngFor="let item of items; let i = index">
+    <ion-item-sliding *ngFor="let item of loadItems(); let i = index">
 
       <ion-item-options side="start">
         <ion-item-option (click)="moveItemToPersonalInventory(item)">

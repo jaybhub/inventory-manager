@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, ToastController, AlertController } from '@ionic/angular';
+import { DataProviderService } from '../data-provider.service';
+import { FunctionProviderService } from '../function-provider.service';
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 
 @Component({
   selector: 'app-tab3',
@@ -8,112 +11,41 @@ import { NavController, ToastController, AlertController } from '@ionic/angular'
 })
 export class Tab3Page {
 
-  items = [
-    {
-      name: "Bobcat",
-      description: "Heavy machinery with a scoop on the front"
-    },
-    {
-      name: "Shovel",
-      description: "A tool used to dig or transfer soil"
-    },
-    { name: "Rake",
-      description: "A tool used for moving leaves or mulch"
-    },
-    {
-      name: "Trencher",
-      description: "Light machine that digs a narrow trench in the soil"
-    }
-  ];
 
-  constructor( public navCtrl: NavController, public toastCtrl: ToastController, public alertCtrl: AlertController) {
+  constructor(public socialSharing: SocialSharing, public functionProvider: FunctionProviderService, public dataProvider: DataProviderService, public navCtrl: NavController, public toastCtrl: ToastController, public alertCtrl: AlertController) {
 
   }
 
-  // Add new item button functionality - alert prompt
+  // Get items
+  loadItems() {
+    return this.dataProvider.getItems();
+  }
+
+  // Add new item
   async addItem() {
     console.log("Added item to Description List");
-    this.showAddItemPrompt();
+    this.functionProvider.showPrompt();
   }
 
-  async showAddItemPrompt() {
-    const alert = await this.alertCtrl.create({
-      header: 'Add Item',
-      message: 'Enter item and brief description',
-      inputs: [
-        {
-          name: 'name',
-          type: 'text',
-          placeholder: 'Item'
-        },
-        {
-          name: 'description',
-          type: 'text',
-          placeholder: 'Description'
-        },
-      ],
-      buttons: [
-        {
-          text: 'Cancel',
-          role: 'cancel',
-          cssClass: 'secondary',
-          handler: () => {
-            console.log('Confirm Cancel');
-          }
-        }, 
-        {
-          text: 'Add',
-          handler: (item) => {
-            console.log('Confirm Ok', item);
-            this.items.push(item);
-          }
-        }
-      ]
-    });
-    await alert.present();
-  }
-
-  // Edit item function
+  // Edit item 
   async editItem(item, index) {
     console.log("Edited " + item);
-    this.showEditItemPrompt(item, index);
+    this.functionProvider.showPrompt(item, index);
   }
 
-  async showEditItemPrompt(item, index) {
-    const alert = await this.alertCtrl.create({
-      header: 'Update Item',
-      inputs: [
-        {
-          name: 'name',
-          type: 'text',
-          value: item.name
-        },
-        {
-          name: 'descriptioni',
-          type: 'text',
-          value: item.description
-        },
-      ],
-      buttons: [
-        {
-          text: 'Cancel',
-          role: 'cancel',
-          cssClass: 'secondary',
-          handler: () => {
-          }
-        }, 
-        {
-          text: 'Update',
-          handler: (item) => {
-            this.items[index] = item;
-          }
-        }
-      ]
+  // Remove Item
+  async removeItem(item, index) {
+    console.log("Removed Item - ", item.name, index);
+    const toast = await this.toastCtrl.create({
+      message: 'Removing ' + item.name + ' from list...',
+      duration: 3000
     });
-    await alert.present();
+    toast.present();
+
+    this.dataProvider.removeItem(index);
   }
 
-  // addItemToPersonalInventory(item) function
+  // Move item to personal inventory
   async moveItemToPersonalInventory(item) {
     console.log("Added " + item.name + " to Personal Inventory")
     const toast = await this.toastCtrl.create({
@@ -123,7 +55,7 @@ export class Tab3Page {
     toast.present();
   }
 
-  // addItemToSharedInventory(item) function
+  // Move item to shared inventory and send notice
   async moveItemToSharedInventory(item) {
     console.log("Added " + item.name + " to Shared Inventory")
     const toast = await this.toastCtrl.create({
@@ -131,18 +63,18 @@ export class Tab3Page {
       duration: 3000
     });
     toast.present();
-  }
 
-  // deleteItem(item)
-  async removeItem(item, index) {
-    console.log("Removed Item - ", item.name, index);
-    const toast = await this.toastCtrl.create({
-      message: 'Removing ' + item.name + ' from list...',
-      duration: 3000
+    let Body = item.name + " has been returned to the shared inventory. Please use Inventory Manager to check it out.";
+    let Subject = item.name + "was Returned";
+    this.socialSharing.share(Body, Subject, this.dataProvider.getEmailList()).then(() => {
+      // Success!
+      console.log("Shared successfully!");
+    }).catch((error) => {
+      // Error!
+      console.error("Error while sharing ", error);
     });
-    toast.present();
-
-    this.items.splice(index, 1);
   }
+
+
 
 }
