@@ -1,0 +1,23 @@
+
+# Create item
+curl --header "Content-Type: application/json" \
+  --request POST \
+  --data '{"name":"Shovel","description":"A scooping tool"}' \
+  http://localhost:8888/api/inventory
+
+# Create item
+curl --header "Content-Type: application/json" \
+  --request POST \
+  --data '{"name":"Rake","description":"A raking tool"}' \
+  http://localhost:8888/api/inventory
+
+# Update item
+curl --header "Content-Type: application/json" \
+  --request PUT \
+  --data '{"name":"Leaf Rake","description":"A leaf raking tool"}' \
+  http://localhost:8888/api/inventory/{id}  
+
+ # Delete item
+curl --header "Content-Type: application/json" \
+  --request DELETE \
+  http://localhost:8888/api/inventory/{id}   

@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class DataProviderService {
 
-  items = [
+  descriptionItems = [
     {
       name: "Bobcat",
       description: "Heavy machinery with a scoop on the front"
@@ -23,6 +23,21 @@ export class DataProviderService {
     }
   ];
 
+  sharedInventoryItems = [
+    {
+      name: "Garden Hose",
+      description: "100 ft hose"
+    },
+    {
+      name: "Pruning Shears",
+      description: "Cutting tool for removing twigs"
+    }
+  ]
+
+  personalInventoryItems = [
+
+  ]
+
   emailList = ["jhubert1@maryville.edu", "jaybhubert@gmail.com"]
 
 
@@ -32,20 +47,28 @@ export class DataProviderService {
     return this.emailList;
   }
 
-  getItems() {
-    return this.items;
+  getDescriptionItems() {
+    return this.descriptionItems;
   }
   
+  getSharedInventoryItems() {
+    return this.sharedInventoryItems;
+  }
+
+  getPersonalInventoryItems() {
+    return this.personalInventoryItems;
+  }
+
   removeItem(index) {
-    this.items.splice(index, 1);
+    this.descriptionItems.splice(index, 1);
   }
 
   addItem(item) {
-    this.items.push(item);
+    this.descriptionItems.push(item);
   }
 
   editItem(item,index) {
-    this.items[index] = item;
+    this.descriptionItems[index] = item;
   }
 
 }

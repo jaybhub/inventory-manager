@@ -18,7 +18,7 @@ export class Tab3Page {
 
   // Get items
   loadItems() {
-    return this.dataProvider.getItems();
+    return this.dataProvider.getDescriptionItems();
   }
 
   // Add new item

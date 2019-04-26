@@ -27,8 +27,11 @@
       <ion-col class="inventory-column">
         <div class="col-header">Shared Items</div>
         <ion-list dragula="bag" [(dragulaModel)]="q1">
-          <ion-item *ngFor="let item of q1" [color]="item.color" expand="block" text-wrap>
-            {{ item.value }}
+          <ion-item *ngFor="let item of loadSharedItems()" [color]="primary" expand="block" text-wrap>
+            <ion-label>
+              <h2>{{item.name}}</h2>
+              <p>{{item.description}}</p>
+            </ion-label>
           </ion-item>
         </ion-list>
       </ion-col>
@@ -39,7 +42,7 @@
   <!-- Move to Shared Inventory Area, Fixed at Bottom -->
   <ion-row class="move-item" justify-content-center>
     <ion-col text-center>
-      <h4 >Add to Personal Inventory</h4>
+      <h4>Add to Personal Inventory</h4>
       <ion-icon name="return-left"></ion-icon>
     </ion-col>
   </ion-row>

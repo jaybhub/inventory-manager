@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 
 import { DragulaService } from 'ng2-dragula';
 import { ToastController } from '@ionic/angular';
+import { DataProviderService } from '../data-provider.service';
+
 
 @Component({
   selector: 'app-tab2',
@@ -10,15 +12,12 @@ import { ToastController } from '@ionic/angular';
 })
 export class Tab2Page {
   // TODO: Change to dynamically filled list
-  q1 = [
-    { value: 'Bobcat', color: 'primary' },
-    { value: 'Pruning Shears', color: 'primary' }
-  ];
+  q1 = this.loadSharedItems()
  
   // TODO: moveItemToPersonalInventory function
 
-  constructor(private dragulaService: DragulaService, private toastController: ToastController) {
-    
+  constructor(public dataProvider: DataProviderService, private dragulaService: DragulaService, private toastController: ToastController) {
+
     this.dragulaService.drag('bag')
     .subscribe(({ name, el, source }) => {
       el.setAttribute('color', 'primary');
@@ -41,5 +40,11 @@ export class Tab2Page {
       removeOnSpill: true
     });
   }
- 
+
+    // Get items
+    loadSharedItems() {
+      return this.dataProvider.getSharedInventoryItems();
+    };
+
+
 }
