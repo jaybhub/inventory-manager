@@ -10,6 +10,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { DragulaModule } from 'ng2-dragula';
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+import { DataProviderService } from './data-provider.service';
+import { FunctionProviderService } from './function-provider.service';
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,7 +22,10 @@ import { DragulaModule } from 'ng2-dragula';
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    SocialSharing,
+    DataProviderService,
+    FunctionProviderService
   ],
   bootstrap: [AppComponent]
 })

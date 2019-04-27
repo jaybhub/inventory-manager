@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, ToastController, AlertController } from '@ionic/angular';
 import { DataProviderService } from '../data-provider.service';
 import { FunctionProviderService } from '../function-provider.service';
-// import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 
 @Component({
   selector: 'app-tab3',
@@ -12,7 +12,7 @@ import { FunctionProviderService } from '../function-provider.service';
 export class Tab3Page {
 
 
-  constructor(public functionProvider: FunctionProviderService, public dataProvider: DataProviderService, public navCtrl: NavController, public toastCtrl: ToastController, public alertCtrl: AlertController) {
+  constructor(public functionProvider: FunctionProviderService, public dataProvider: DataProviderService, public navCtrl: NavController, public toastCtrl: ToastController, public alertCtrl: AlertController, public socialSharing: SocialSharing) {
 
   }
 
@@ -48,17 +48,17 @@ export class Tab3Page {
   // Move item to personal inventory, or shared inventory and send notice
   moveItem(item, inventoryTo) {
     this.functionProvider.moveItem(item, inventoryTo, null);
-    // if (inventoryTo === 'shared') {
-    // // let Body = item.name + " has been returned to the shared inventory. Please use Inventory Manager to check it out.";
-    // // let Subject = item.name + "was Returned";
-    // // this.socialSharing.share(Body, Subject, this.dataProvider.getEmailList()).then(() => {
-    // //   // Success!
-    // //   console.log("Shared successfully!");
-    // // }).catch((error) => {
-    // //   // Error!
-    // //   console.error("Error while sharing ", error);
-    // // });
-    // }
+    if (inventoryTo === 'shared') {
+      let Body = item.name + " has been added to the shared inventory. Please use Inventory Manager to check it out.";
+      let Subject = item.name + "was Added";
+      this.socialSharing.share(Body, Subject, this.dataProvider.getEmailList()).then(() => {
+        // Success!
+        console.log("Shared successfully!");
+      }).catch((error) => {
+        // Error!
+        console.error("Error while sharing ", error);
+      });
+    }
   }
 
 }
