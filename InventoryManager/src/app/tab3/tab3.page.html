@@ -20,12 +20,13 @@
 
     <!-- Sliding item with text options on both sides -->
     <ion-item-sliding *ngFor="let item of loadItems(); let i = index">
-
+      <!-- Move item to personal inventory option -->
       <ion-item-options side="start">
         <ion-item-option (click)="moveItem(item, 'personal')">
           <ion-icon slot="top" name="add-circle-outline"></ion-icon>
           Personal
         </ion-item-option>
+        <!-- Move item to shared inventory option -->
         <ion-item-option color="tertiary" (click)="moveItem(item, 'shared')">
           <ion-icon slot="top" name="add-circle-outline"></ion-icon>
           Shared
@@ -40,6 +41,7 @@
       </ion-item>
   
       <ion-item-options side="end">
+        <!-- Delete item option -->
         <ion-item-option color="danger" (click)="removeItem(item, 'description')">
           <ion-icon slot="icon-only" name="trash"></ion-icon>
         </ion-item-option>

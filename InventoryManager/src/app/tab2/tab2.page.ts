@@ -17,6 +17,7 @@ export class Tab2Page {
  
   constructor(private dragulaService: DragulaService, public dataProvider: DataProviderService, public functionProvider: FunctionProviderService, private toastController: ToastController) {
 
+    // Drag & drop functionality
     this.dragulaService.drag('bag')
     .subscribe(({ el }) => {
       el.setAttribute('color', 'primary');
@@ -28,6 +29,7 @@ export class Tab2Page {
         message: 'Moved to Personal Inventory',
         duration: 2000
       }).then(toast => toast.present());
+      // Update database collections
       this.functionProvider.moveItem(item, 'personal', 'shared');
     });
  

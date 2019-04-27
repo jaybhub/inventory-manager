@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class DataProviderService {
 
+  // Items accessable on the Description Tab
   descriptionItems = [
     {
       name: "Bobcat",
@@ -23,6 +24,7 @@ export class DataProviderService {
     }
   ];
 
+  // Items accessable on the Shared Inventory Tab
   sharedInventoryItems = [
     {
       name: "Garden Hose",
@@ -34,6 +36,7 @@ export class DataProviderService {
     }
   ]
 
+  // Items in personal inventory - inactive
   personalInventoryItems = [
     {
       name: "Water Can",
@@ -45,15 +48,18 @@ export class DataProviderService {
     }
   ]
 
+  // Items in personal inventory - active
   activeInventoryItems = [
 
   ]
 
+  // Email list for Social Sharing notifications
   emailList = ["jhubert1@maryville.edu", "jaybhubert@gmail.com"]
 
 
   constructor() { }
 
+  // Getter functions
   getEmailList() {
     return this.emailList;
   }
@@ -74,6 +80,7 @@ export class DataProviderService {
     return this.activeInventoryItems;
   }
 
+  // Robust remove item function used in all tabs
   removeItem(item, inventory) {
     switch (inventory) {
       case 'shared':
@@ -97,6 +104,7 @@ export class DataProviderService {
     this.descriptionItems[index] = item;
   }
 
+  // Robust add item function used in all tabs
   addItem(item, inventory?) {
     if (inventory === 'shared') {
         this.sharedInventoryItems.push(item);

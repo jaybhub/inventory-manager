@@ -10,7 +10,7 @@ export class FunctionProviderService {
 
   constructor(public dataProvider: DataProviderService, public toastCtrl: ToastController, public alertCtrl: AlertController) { }
 
-  // Move item
+  // Robust move item function used in all tabs
   async moveItem(item, inventoryTo, inventoryFrom) {
     console.log("Added " + item.name + " to " + inventoryTo + " inventory")
     const toast = await this.toastCtrl.create({

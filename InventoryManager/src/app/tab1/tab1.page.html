@@ -1,4 +1,4 @@
-<ion-header class="header">
+<ion-header>
   <ion-toolbar>
     <ion-title class="title">
       My Inventory
@@ -9,9 +9,10 @@
 <ion-content forceOverscroll="false">
   <ion-grid>
 
-    <!-- Item Lists Row & Columns -->
+    <!-- Item Lists -->
     <ion-row>
-      <!-- Active Items List Left 5/12 -->
+
+      <!-- Active Items List -->
       <ion-col size="6" class="active-column">
         <div class="col-header">Active Items</div>
         <ion-list dragula="bag1" [(dragulaModel)]="q1">
@@ -23,7 +24,8 @@
           </ion-item>
         </ion-list>
       </ion-col>
-      <!-- My Inventory List Right 7/12 -->
+
+      <!-- Inactive Items List -->
       <!-- TODO: Make column scrollable without moving Active Items -->
       <ion-col size="6" class="inventory-column">
         <div class="col-header">Inactive Items</div>
