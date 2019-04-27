@@ -20,11 +20,13 @@ export class FunctionProviderService {
     toast.present();
 
     this.dataProvider.addItem(item, inventoryTo);
-    this.dataProvider.removeItem(item, inventoryFrom)
+    if (inventoryFrom !== null) {
+      this.dataProvider.removeItem(item, inventoryFrom)
+    }
   }
 
   // Input prompt
-  async showPrompt(item?, index?, inventory?) {
+  async showPrompt(item?, index?) {
     const alert = await this.alertCtrl.create({
       header: item ? 'Update Item' : 'Add Item',
       message: item ? 'Update the item below' : 'Enter item and brief description',
@@ -59,7 +61,7 @@ export class FunctionProviderService {
               this.dataProvider.editItem(item, index);
             }
             else {
-              this.dataProvider.addItem(item, inventory);
+              this.dataProvider.addItem(item);
             }
           }
         }

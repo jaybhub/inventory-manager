@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header class="header">
   <ion-toolbar>
     <ion-title class="title">
       My Inventory
@@ -8,18 +8,6 @@
 
 <ion-content forceOverscroll="false">
   <ion-grid>
-
-    <!-- Item Totals Row & Columns -->
-    <ion-row align-items-center>
-      <!-- Active Items Total -->
-      <ion-col class="total-column" size="6">
-        Total Active Items:
-      </ion-col>
-      <!-- Inventory Items Total -->
-      <ion-col class="total-column" size="6">
-        Total Inventory Items:
-      </ion-col>
-    </ion-row>
 
     <!-- Item Lists Row & Columns -->
     <ion-row>
@@ -38,7 +26,7 @@
       <!-- My Inventory List Right 7/12 -->
       <!-- TODO: Make column scrollable without moving Active Items -->
       <ion-col size="6" class="inventory-column">
-        <div class="col-header">My Inventory</div>
+        <div class="col-header">Inactive Items</div>
         <ion-list dragula="bag1" [(dragulaModel)]="q2">
           <ion-item *ngFor="let item of loadPersonalItems(); let i = index" [color]="primary" expand="block" text-wrap>
             <ion-label>

@@ -97,20 +97,18 @@ export class DataProviderService {
     this.descriptionItems[index] = item;
   }
 
-  addItem(item, inventory) {
-    switch (inventory) {
-      case 'shared':
+  addItem(item, inventory?) {
+    if (inventory === 'shared') {
         this.sharedInventoryItems.push(item);
-        break;
-      case 'personal':
+    }
+    else if (inventory === 'personal') {
         this.personalInventoryItems.push(item);
-        break;
-      case 'active':
+    }      
+    else if (inventory === 'active') {
         this.activeInventoryItems.push(item);
-        break;
-      case 'description':
+    }
+    else {
         this.descriptionItems.push(item);
-        break;
     }
     
   }

@@ -9,23 +9,11 @@
 <ion-content forceOverscroll="false">
   <ion-grid>
 
-    <!-- Item Totals Row & Columns -->
-    <ion-row align-items-center>
-      <!-- Inventory Items Total -->
-      <ion-col class="total-column" size="6">
-        Total Items:
-      </ion-col>
-      <!-- Items In User Inventories Total -->
-      <ion-col class="total-column" size="6">
-        Items Out:
-      </ion-col>
-    </ion-row>
-
     <!-- Item List Row & Column -->
     <ion-row align-items-center>
       <!-- Item List Column -->
       <ion-col class="inventory-column">
-        <div class="col-header">Shared Items</div>
+        <div class="col-header">Available Items</div>
         <ion-list dragula="bag" [(dragulaModel)]="q1">
           <ion-item *ngFor="let item of loadSharedItems(); let i = index" [color]="primary" expand="block" text-wrap>
             <ion-label>

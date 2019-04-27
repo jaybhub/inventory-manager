@@ -10,7 +10,7 @@
 
   <!-- Add new item button -->
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button (click)="addItem('description')">
+    <ion-fab-button (click)="addItem()">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
@@ -22,11 +22,11 @@
     <ion-item-sliding *ngFor="let item of loadItems(); let i = index">
 
       <ion-item-options side="start">
-        <ion-item-option (click)="moveItemToPersonalInventory(item)">
+        <ion-item-option (click)="moveItem(item, 'personal')">
           <ion-icon slot="top" name="add-circle-outline"></ion-icon>
           Personal
         </ion-item-option>
-        <ion-item-option color="tertiary" (click)="moveItemToSharedInventory(item)">
+        <ion-item-option color="tertiary" (click)="moveItem(item, 'shared')">
           <ion-icon slot="top" name="add-circle-outline"></ion-icon>
           Shared
         </ion-item-option>
@@ -40,7 +40,7 @@
       </ion-item>
   
       <ion-item-options side="end">
-        <ion-item-option color="danger" (click)="removeItem(item, i, 'description')">
+        <ion-item-option color="danger" (click)="removeItem(item, 'description')">
           <ion-icon slot="icon-only" name="trash"></ion-icon>
         </ion-item-option>
       </ion-item-options>

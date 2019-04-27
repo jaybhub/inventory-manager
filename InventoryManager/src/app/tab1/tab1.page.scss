@@ -2,10 +2,6 @@
   text-align: center;
 }
 
-.total-column {
-
-}
-
 .active-column {
   border: 4px solid #fff;
 }
@@ -32,10 +28,11 @@
   h4 {
     margin-bottom: 0px; 
     margin-top: 5px;
+    color: var(--ion-color-primary);
   }
 
   ion-icon {
      font-size: 64px;
-    //  color: "medium";
+     color: var(--ion-color-primary);
   }
 }
