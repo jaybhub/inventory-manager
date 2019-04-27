@@ -45,7 +45,8 @@ export class Tab3Page {
     this.dataProvider.removeItem(item, inventory);
   }
 
-  // Move item to personal inventory, or shared inventory and send notice
+  // Move item to personal inventory
+  // or to shared inventory and then send notice of new item availability
   moveItem(item, inventoryTo) {
     this.functionProvider.moveItem(item, inventoryTo, null);
     if (inventoryTo === 'shared') {
