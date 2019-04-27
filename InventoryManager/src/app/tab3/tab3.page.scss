@@ -2,6 +2,11 @@
     text-align: center;
   }
 
-// TODO: ion item options styling
+  ion-toolbar {
+    --background: var(--ion-color-primary); 
+    --color: var(--ion-color-primary-contrast);
+  }
 
-// TODO: ion item styling
+  ion-item {
+    --background: var(--ion-color-light);
+  }

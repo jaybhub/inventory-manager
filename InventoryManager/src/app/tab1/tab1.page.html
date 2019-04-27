@@ -15,7 +15,7 @@
       <ion-col size="6" class="active-column">
         <div class="col-header">Active Items</div>
         <ion-list dragula="bag1" [(dragulaModel)]="q1">
-          <ion-item *ngFor="let item of loadActiveItems(); let i = index" [color]="primary" expand="block" text-wrap>
+          <ion-item *ngFor="let item of loadActiveItems(); let i = index" [color]="secondary" expand="block" text-wrap>
             <ion-label>
               <h2>{{item.name}}</h2>
               <p>{{item.description}}</p>
@@ -28,7 +28,7 @@
       <ion-col size="6" class="inventory-column">
         <div class="col-header">Inactive Items</div>
         <ion-list dragula="bag1" [(dragulaModel)]="q2">
-          <ion-item *ngFor="let item of loadPersonalItems(); let i = index" [color]="primary" expand="block" text-wrap>
+          <ion-item *ngFor="let item of loadPersonalItems(); let i = index" [color]="secondary" expand="block" text-wrap>
             <ion-label>
               <h2>{{item.name}}</h2>
               <p>{{item.description}}</p>

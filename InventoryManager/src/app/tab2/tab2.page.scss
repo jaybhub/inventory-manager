@@ -1,11 +1,16 @@
 .title {
     text-align: center;
   }
+
+  ion-toolbar {
+    --background: var(--ion-color-primary); 
+    --color: var(--ion-color-primary-contrast);
+  }
   
-  .total-column {
-
-}
-
+  ion-item {
+    --background: var(--ion-color-success);
+  }
+  
 .inventory-column {
     border: 4px solid #fff;
 }
@@ -32,6 +37,6 @@
   
     ion-icon {
        font-size: 64px;
-      //  color: "medium";
+       color: var(--ion-color-primary);
     }
   }
