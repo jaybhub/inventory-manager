@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AlertController } from '@ionic/angular';
+import { NavController, ToastController, AlertController } from '@ionic/angular';
 import { DataProviderService } from './data-provider.service';
 
 
@@ -8,12 +8,23 @@ import { DataProviderService } from './data-provider.service';
 })
 export class FunctionProviderService {
 
-  constructor(public dataProvider: DataProviderService, public alertCtrl: AlertController) { }
+  constructor(public dataProvider: DataProviderService, public toastCtrl: ToastController, public alertCtrl: AlertController) { }
 
   // Move item
+  async moveItem(item, inventoryTo, inventoryFrom) {
+    console.log("Added " + item.name + " to " + inventoryTo + " inventory")
+    const toast = await this.toastCtrl.create({
+      message: 'Adding ' + item.name + ' to ' + inventoryTo + ' inventory...',
+      duration: 3000
+    });
+    toast.present();
+
+    this.dataProvider.addItem(item, inventoryTo);
+    this.dataProvider.removeItem(item, inventoryFrom)
+  }
 
   // Input prompt
-  async showPrompt(item?, index?) {
+  async showPrompt(item?, index?, inventory?) {
     const alert = await this.alertCtrl.create({
       header: item ? 'Update Item' : 'Add Item',
       message: item ? 'Update the item below' : 'Enter item and brief description',
@@ -48,7 +59,7 @@ export class FunctionProviderService {
               this.dataProvider.editItem(item, index);
             }
             else {
-              this.dataProvider.addItem(item);
+              this.dataProvider.addItem(item, inventory);
             }
           }
         }

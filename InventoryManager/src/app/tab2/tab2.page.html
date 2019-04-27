@@ -27,7 +27,7 @@
       <ion-col class="inventory-column">
         <div class="col-header">Shared Items</div>
         <ion-list dragula="bag" [(dragulaModel)]="q1">
-          <ion-item *ngFor="let item of loadSharedItems()" [color]="primary" expand="block" text-wrap>
+          <ion-item *ngFor="let item of loadSharedItems(); let i = index" [color]="primary" expand="block" text-wrap>
             <ion-label>
               <h2>{{item.name}}</h2>
               <p>{{item.description}}</p>

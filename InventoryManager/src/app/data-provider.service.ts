@@ -35,6 +35,17 @@ export class DataProviderService {
   ]
 
   personalInventoryItems = [
+    {
+      name: "Water Can",
+      description: "1 gallon can with handle"
+    },
+    {
+      name: "Hand Trowel",
+      description: "Small hand shovel"
+    }
+  ]
+
+  activeInventoryItems = [
 
   ]
 
@@ -59,16 +70,49 @@ export class DataProviderService {
     return this.personalInventoryItems;
   }
 
-  removeItem(index) {
-    this.descriptionItems.splice(index, 1);
+  getActiveInventoryItems() {
+    return this.activeInventoryItems;
   }
 
-  addItem(item) {
-    this.descriptionItems.push(item);
+  removeItem(item, inventory) {
+    switch (inventory) {
+      case 'shared':
+        let indexA = this.sharedInventoryItems.indexOf(item);
+        if (indexA !== -1) this.sharedInventoryItems.splice(indexA, 1);
+        break;
+      case 'personal':
+        let indexB = this.personalInventoryItems.indexOf(item);
+        if (indexB !== -1) this.personalInventoryItems.splice(indexB, 1);
+        break;
+      case 'active':
+        let indexC = this.activeInventoryItems.indexOf(item);
+        if (indexC !== -1) this.activeInventoryItems.splice(indexC, 1);
+      case 'description':
+        let indexD = this.descriptionItems.indexOf(item);
+        if (indexD !== -1) this.descriptionItems.splice(indexD, 1);
+    }
   }
 
   editItem(item,index) {
     this.descriptionItems[index] = item;
+  }
+
+  addItem(item, inventory) {
+    switch (inventory) {
+      case 'shared':
+        this.sharedInventoryItems.push(item);
+        break;
+      case 'personal':
+        this.personalInventoryItems.push(item);
+        break;
+      case 'active':
+        this.activeInventoryItems.push(item);
+        break;
+      case 'description':
+        this.descriptionItems.push(item);
+        break;
+    }
+    
   }
 
 }

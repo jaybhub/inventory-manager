@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { DragulaService } from 'ng2-dragula';
 import { ToastController } from '@ionic/angular';
 import { DataProviderService } from '../data-provider.service';
+import { FunctionProviderService } from '../function-provider.service';
 
 
 @Component({
@@ -12,28 +13,27 @@ import { DataProviderService } from '../data-provider.service';
 })
 export class Tab2Page {
   // TODO: Change to dynamically filled list
-  q1 = this.loadSharedItems()
+  q1 = this.loadSharedItems();
  
-  // TODO: moveItemToPersonalInventory function
-
-  constructor(public dataProvider: DataProviderService, private dragulaService: DragulaService, private toastController: ToastController) {
+  constructor(private dragulaService: DragulaService, public dataProvider: DataProviderService, public functionProvider: FunctionProviderService, private toastController: ToastController) {
 
     this.dragulaService.drag('bag')
-    .subscribe(({ name, el, source }) => {
+    .subscribe(({ el }) => {
       el.setAttribute('color', 'primary');
     });
  
     this.dragulaService.removeModel('bag')
     .subscribe(({ item }) => {
       this.toastController.create({
-        message: 'Moved: ' + item.value + 'to Personal Inventory',
+        message: 'Moved to Personal Inventory',
         duration: 2000
       }).then(toast => toast.present());
+      this.functionProvider.moveItem(item, 'personal', 'shared');
     });
  
     this.dragulaService.dropModel('bag')
-      .subscribe(({ item }) => {
-        item['color'] = 'primary';
+      .subscribe(({ el }) => {
+        el.setAttribute('color', 'primary');
       });
  
     this.dragulaService.createGroup('bag', {

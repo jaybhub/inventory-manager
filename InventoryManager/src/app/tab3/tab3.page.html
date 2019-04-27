@@ -10,7 +10,7 @@
 
   <!-- Add new item button -->
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button (click)="addItem()">
+    <ion-fab-button (click)="addItem('description')">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
@@ -40,7 +40,7 @@
       </ion-item>
   
       <ion-item-options side="end">
-        <ion-item-option color="danger" (click)="removeItem(item, i)">
+        <ion-item-option color="danger" (click)="removeItem(item, i, 'description')">
           <ion-icon slot="icon-only" name="trash"></ion-icon>
         </ion-item-option>
       </ion-item-options>

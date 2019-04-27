@@ -22,9 +22,9 @@ export class Tab3Page {
   }
 
   // Add new item
-  async addItem() {
+  async addItem(inventory) {
     console.log("Added item to Description List");
-    this.functionProvider.showPrompt();
+    this.functionProvider.showPrompt(inventory);
   }
 
   // Edit item 
@@ -34,7 +34,7 @@ export class Tab3Page {
   }
 
   // Remove Item
-  async removeItem(item, index) {
+  async removeItem(item, index, inventory) {
     console.log("Removed Item - ", item.name, index);
     const toast = await this.toastCtrl.create({
       message: 'Removing ' + item.name + ' from list...',
@@ -42,18 +42,11 @@ export class Tab3Page {
     });
     toast.present();
 
-    this.dataProvider.removeItem(index);
+    this.dataProvider.removeItem(index, inventory);
   }
 
   // Move item to personal inventory
-  async moveItemToPersonalInventory(item) {
-    console.log("Added " + item.name + " to Personal Inventory")
-    const toast = await this.toastCtrl.create({
-      message: 'Adding ' + item.name + ' to Personal Inventory...',
-      duration: 3000
-    });
-    toast.present();
-  }
+  
 
   // Move item to shared inventory and send notice
   async moveItemToSharedInventory(item) {
